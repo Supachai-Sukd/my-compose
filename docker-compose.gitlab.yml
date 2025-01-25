@@ -1,0 +1,21 @@
+version: '3.6'
+services:
+  gitlab:
+    image: gitlab/gitlab-ce:17.2.2-ce.0
+    container_name: gitlab
+    restart: always
+    hostname: 'depa-git.pnpsw.com'
+    environment:
+      GITLAB_OMNIBUS_CONFIG: |
+        # Add any other gitlab.rb configuration here, each on its own line
+        external_url 'https://depa-git.pnpsw.com'
+        registry_external_url 'https://depa-registry.pnpsw.com'
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8022:22'
+    volumes:
+      - '/home/dev/gitlab/config:/etc/gitlab'
+      - '/home/dev/gitlab/logs:/var/log/gitlab'
+      - '/home/dev/gitlab/data:/var/opt/gitlab'
+    shm_size: '256m'
