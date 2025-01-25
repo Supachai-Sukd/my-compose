@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  psql:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ${DB_DATABASE:-auth-services}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "${DB_PORT:-5433}:5432"
+    volumes:
+      - docker_auth:/var/lib/postgresql/data
+  redis:
+    image: redis:latest
+    ports:
+      - "${REDIS_PORT:-6380}:6379"
+  mongo:
+    image: mongo:latest
+    ports:
+      - "${MONGO_PORT:-27018}:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_DATABASE:-auth-services}
+    volumes:
+      - docker_auth:/data/db
+
+volumes:
+  docker_auth:
