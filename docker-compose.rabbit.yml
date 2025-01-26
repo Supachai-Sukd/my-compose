@@ -9,3 +9,8 @@ services:
     environment:
       RABBITMQ_DEFAULT_USER: "your_username"
       RABBITMQ_DEFAULT_PASS: "your_password"
+
+
+
+# Run ข้างล่างด้วย
+# docker exec -it <container_id> rabbitmq-plugins enable rabbitmq_management
