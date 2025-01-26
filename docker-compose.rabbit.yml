@@ -14,3 +14,4 @@ services:
 
 # Run ข้างล่างด้วย
 # docker exec -it <container_id> rabbitmq-plugins enable rabbitmq_management
+# http://<hostname>:15672
