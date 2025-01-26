@@ -15,3 +15,37 @@ services:
 # Run ข้างล่างด้วย
 # docker exec -it <container_id> rabbitmq-plugins enable rabbitmq_management
 # http://<hostname>:15672
+
+
+# ข้างล่างตัวอย่างหลาย node
+
+# version: '3.8'
+
+# services:
+#   rabbitmq-node-a:
+#     image: rabbitmq:management
+#     container_name: rabbitmq-node-a
+#     environment:
+#       RABBITMQ_NODENAME: rabbit@node-a
+#       RABBITMQ_ERLANG_COOKIE: "secret_cookie"
+#     ports:
+#       - "5672:5672"   # สำหรับ AMQP (Node A)
+#       - "15672:15672" # สำหรับ Web UI (Node A)
+#     networks:
+#       - rabbitmq-cluster
+
+#   rabbitmq-node-b:
+#     image: rabbitmq:management
+#     container_name: rabbitmq-node-b
+#     environment:
+#       RABBITMQ_NODENAME: rabbit@node-b
+#       RABBITMQ_ERLANG_COOKIE: "secret_cookie"
+#     ports:
+#       - "5673:5672"   # สำหรับ AMQP (Node B)
+#       - "15673:15672" # สำหรับ Web UI (Node B)
+#     networks:
+#       - rabbitmq-cluster
+
+# networks:
+#   rabbitmq-cluster:
+#     driver: bridge
